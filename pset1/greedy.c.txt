@@ -1,0 +1,85 @@
+#include <stdio.h>
+
+#include <math.h>
+
+#include <cs50.h>
+
+
+#define QUARTER 25
+
+#define DIME 10
+
+#define NICKEL 5
+
+#define PENNY 1
+
+
+int greedy(float);
+
+
+int main(void) {
+
+    float changeInDollars;
+
+    
+printf("How much change is owed?\n");
+
+    changeInDollars = get_float(); 
+    
+    while(changeInDollars < 0) {
+
+        printf("Retry: \n");
+ 
+        changeInDollars = get_float();
+    
+    }
+    
+    printf("%d\n", greedy(changeInDollars));
+
+
+}
+
+
+int greedy(float changeInDollars) {
+
+    int change, count = 0;
+ 
+
+    change = round(changeInDollars * 100);
+
+
+    if( (change / QUARTER > 0)) {
+
+        count += change / QUARTER;
+
+        change %= QUARTER;
+    
+    } 
+
+    if( (change / DIME > 0)) {
+
+        count += change / DIME;
+ 
+       change %= DIME;
+    
+    } 
+    
+    if( (change / NICKEL > 0)) {
+
+        count += change / NICKEL; 
+
+        change %= NICKEL;
+    
+    } 
+    
+    if( (change / PENNY > 0)) {
+   
+        count += change / PENNY; 
+    
+    }
+
+    return count;
+ 
+
+}
+

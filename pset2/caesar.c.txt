@@ -1,0 +1,57 @@
+#include <stdio.h>
+
+#include <cs50.h>
+
+#include <string.h>
+
+#include <ctype.h>
+
+
+int main(int argc, string argv[]) {
+
+    if (argc == 2) {
+      
+        string plaintext;
+ 
+        int key = atoi(argv[1]);
+
+        printf("plaintext: ");
+  
+        plaintext = get_string();
+   
+        printf("ciphertext: ");
+     
+     
+        for (int i = 0, n = strlen(plaintext); i < n; i++) {
+
+            if (isalpha(plaintext[i])){
+              
+                if(plaintext[i] >= 'A' && plaintext[i] <= 'Z') {
+    
+                    printf("%c", ('A' + ((plaintext[i]-'A') + key) % 26));
+              
+            }
+    
+                else {
+    
+                    printf("%c", ('a' + ((plaintext[i]-'a') + key) % 26));
+      
+                }
+                
+        
+            }
+
+            else {
+ 
+                printf("%c", plaintext[i]);
+   
+            }
+        
+         }
+  
+         printf("\n");
+ 
+    }
+
+    else return 1;
+}
